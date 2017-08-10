@@ -1,3 +1,4 @@
+var PropTypes = require('prop-types');
 var React = require('react');
 var classNames = require('classnames');
 
@@ -7,14 +8,14 @@ var classNames = require('classnames');
  */
 var Token = React.createClass({
   propTypes: {
-    className: React.PropTypes.string,
-    name: React.PropTypes.string,
-    children: React.PropTypes.string,
-    object: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.object,
+    className: PropTypes.string,
+    name: PropTypes.string,
+    children: PropTypes.string,
+    object: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.object,
     ]),
-    onRemove: React.PropTypes.func
+    onRemove: PropTypes.func
   },
 
   render: function() {

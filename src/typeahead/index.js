@@ -1,3 +1,4 @@
+var PropTypes = require('prop-types');
 var React = require('react');
 var TypeaheadSelector = require('./selector');
 var KeyEvent = require('../keyevent');
@@ -18,42 +19,42 @@ var _generateAccessor = function(field) {
  */
 var Typeahead = React.createClass({
   propTypes: {
-    name: React.PropTypes.string,
-    customClasses: React.PropTypes.object,
-    maxVisible: React.PropTypes.number,
-    options: React.PropTypes.array,
-    allowCustomValues: React.PropTypes.number,
-    defaultValue: React.PropTypes.string,
-    value: React.PropTypes.string,
-    placeholder: React.PropTypes.string,
-    textarea: React.PropTypes.bool,
-    inputProps: React.PropTypes.object,
-    onOptionSelected: React.PropTypes.func,
-    onChange: React.PropTypes.func,
-    onKeyDown: React.PropTypes.func,
-    onKeyUp: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onBlur: React.PropTypes.func,
-    filterOption: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.func
+    name: PropTypes.string,
+    customClasses: PropTypes.object,
+    maxVisible: PropTypes.number,
+    options: PropTypes.array,
+    allowCustomValues: PropTypes.number,
+    defaultValue: PropTypes.string,
+    value: PropTypes.string,
+    placeholder: PropTypes.string,
+    textarea: PropTypes.bool,
+    inputProps: PropTypes.object,
+    onOptionSelected: PropTypes.func,
+    onChange: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    onKeyUp: PropTypes.func,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
+    filterOption: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func
     ]),
-    displayOption: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.func
+    displayOption: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func
     ]),
-    formInputOption: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.func
+    formInputOption: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func
     ]),
-    defaultClassNames: React.PropTypes.bool,
-    customListComponent: React.PropTypes.oneOfType([
-      React.PropTypes.element,
-      React.PropTypes.func
+    defaultClassNames: PropTypes.bool,
+    customListComponent: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func
     ]),
-    customOptionComponent: React.PropTypes.oneOfType([
-      React.PropTypes.element,
-      React.PropTypes.func
+    customOptionComponent: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func
     ])
   },
 

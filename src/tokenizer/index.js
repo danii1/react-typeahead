@@ -1,3 +1,4 @@
+var PropTypes = require('prop-types');
 var React = require('react');
 var Token = require('./token');
 var KeyEvent = require('../keyevent');
@@ -22,33 +23,33 @@ function _arraysAreDifferent(array1, array2) {
  */
 var TypeaheadTokenizer = React.createClass({
   propTypes: {
-    name: React.PropTypes.string,
-    options: React.PropTypes.array,
-    customClasses: React.PropTypes.object,
-    allowCustomValues: React.PropTypes.number,
-    defaultSelected: React.PropTypes.array,
-    defaultValue: React.PropTypes.string,
-    placeholder: React.PropTypes.string,
-    inputProps: React.PropTypes.object,
-    onTokenRemove: React.PropTypes.func,
-    onKeyDown: React.PropTypes.func,
-    onKeyUp: React.PropTypes.func,
-    onTokenAdd: React.PropTypes.func,
-    onFocus: React.PropTypes.func,
-    onBlur: React.PropTypes.func,
-    filterOption: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.func
+    name: PropTypes.string,
+    options: PropTypes.array,
+    customClasses: PropTypes.object,
+    allowCustomValues: PropTypes.number,
+    defaultSelected: PropTypes.array,
+    defaultValue: PropTypes.string,
+    placeholder: PropTypes.string,
+    inputProps: PropTypes.object,
+    onTokenRemove: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    onKeyUp: PropTypes.func,
+    onTokenAdd: PropTypes.func,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
+    filterOption: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func
     ]),
-    displayOption: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.func
+    displayOption: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.func
     ]),
-    maxVisible: React.PropTypes.number,
-    defaultClassNames: React.PropTypes.bool,
-    customOptionComponent: React.PropTypes.oneOfType([
-      React.PropTypes.element,
-      React.PropTypes.func
+    maxVisible: PropTypes.number,
+    defaultClassNames: PropTypes.bool,
+    customOptionComponent: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func
     ])
   },
 

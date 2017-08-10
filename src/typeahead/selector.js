@@ -1,3 +1,4 @@
+var PropTypes = require('prop-types');
 var React = require('react');
 var TypeaheadOption = require('./option');
 var classNames = require('classnames');
@@ -8,16 +9,16 @@ var classNames = require('classnames');
  */
 var TypeaheadSelector = React.createClass({
   propTypes: {
-    options: React.PropTypes.array,
-    customClasses: React.PropTypes.object,
-    customValue: React.PropTypes.string,
-    selectionIndex: React.PropTypes.number,
-    onOptionSelected: React.PropTypes.func,
-    displayOption: React.PropTypes.func.isRequired,
-    defaultClassNames: React.PropTypes.bool,
-    customOptionComponent: React.PropTypes.oneOfType([
-      React.PropTypes.element,
-      React.PropTypes.func
+    options: PropTypes.array,
+    customClasses: PropTypes.object,
+    customValue: PropTypes.string,
+    selectionIndex: PropTypes.number,
+    onOptionSelected: PropTypes.func,
+    displayOption: PropTypes.func.isRequired,
+    defaultClassNames: PropTypes.bool,
+    customOptionComponent: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func
     ])
   },
 

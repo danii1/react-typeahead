@@ -1,3 +1,4 @@
+var PropTypes = require('prop-types');
 var React = require('react');
 var classNames = require('classnames');
 
@@ -6,18 +7,18 @@ var classNames = require('classnames');
  */
 var TypeaheadOption = React.createClass({
   propTypes: {
-    customClasses: React.PropTypes.object,
-    customValue: React.PropTypes.string,
-    onClick: React.PropTypes.func,
-    children: React.PropTypes.string,
-    hover: React.PropTypes.bool,
-    option: React.PropTypes.oneOfType([
-      React.PropTypes.object,
-      React.PropTypes.string
+    customClasses: PropTypes.object,
+    customValue: PropTypes.string,
+    onClick: PropTypes.func,
+    children: PropTypes.string,
+    hover: PropTypes.bool,
+    option: PropTypes.oneOfType([
+      PropTypes.object,
+      PropTypes.string
     ]),
-    customOptionComponent: React.PropTypes.oneOfType([
-      React.PropTypes.element,
-      React.PropTypes.func
+    customOptionComponent: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.func
     ])
   },
 
