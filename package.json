@@ -32,7 +32,9 @@
     "url": "https://github.com/fmoo/react-typeahead.git"
   },
   "dependencies": {
+    "babel-preset-stage-2": "^6.24.1",
     "classnames": "^2.2.5",
+    "create-react-class": "^15.6.0",
     "fuzzy": "^0.1.0",
     "prop-types": "^15.5.10"
   },
@@ -41,8 +43,8 @@
   },
   "main": "lib/react-typeahead.js",
   "devDependencies": {
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-react": "^6.22.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "babelify": "^7.3.0",
     "browserify": "^14.0.0",
     "chai": "^3.5.0",

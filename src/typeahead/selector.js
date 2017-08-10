@@ -7,8 +7,8 @@ var classNames = require('classnames');
  * Container for the options rendered as part of the autocompletion process
  * of the typeahead
  */
-var TypeaheadSelector = React.createClass({
-  propTypes: {
+class TypeaheadSelector extends React.Component {
+  static propTypes = {
     options: PropTypes.array,
     customClasses: PropTypes.object,
     customValue: PropTypes.string,
@@ -20,19 +20,17 @@ var TypeaheadSelector = React.createClass({
       PropTypes.element,
       PropTypes.func
     ])
-  },
+  };
 
-  getDefaultProps: function() {
-    return {
-      selectionIndex: null,
-      customClasses: {},
-      customValue: null,
-      onOptionSelected: function(option) { },
-      defaultClassNames: true
-    };
-  },
+  static defaultProps = {
+    selectionIndex: null,
+    customClasses: {},
+    customValue: null,
+    onOptionSelected: function(option) { },
+    defaultClassNames: true
+  };
 
-  render: function() {
+  render() {
     var classes = {
       "typeahead-selector": this.props.defaultClassNames
     };
@@ -77,12 +75,11 @@ var TypeaheadSelector = React.createClass({
         { results }
       </ul>
     );
-  },
-
-  _onClick: function(result, event) {
-    return this.props.onOptionSelected(result, event);
   }
 
-});
+  _onClick = (result, event) => {
+    return this.props.onOptionSelected(result, event);
+  };
+}
 
 module.exports = TypeaheadSelector;

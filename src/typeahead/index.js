@@ -17,8 +17,8 @@ var _generateAccessor = function(field) {
  * Renders an text input that shows options nearby that you can use the
  * keyboard or mouse to select.  Requires CSS for MASSIVE DAMAGE.
  */
-var Typeahead = React.createClass({
-  propTypes: {
+class Typeahead extends React.Component {
+  static propTypes = {
     name: PropTypes.string,
     customClasses: PropTypes.object,
     maxVisible: PropTypes.number,
@@ -56,47 +56,29 @@ var Typeahead = React.createClass({
       PropTypes.element,
       PropTypes.func
     ])
-  },
+  };
 
-  getDefaultProps: function() {
-    return {
-      options: [],
-      customClasses: {},
-      allowCustomValues: 0,
-      defaultValue: "",
-      value: null,
-      placeholder: "",
-      textarea: false,
-      inputProps: {},
-      onOptionSelected: function(option) {},
-      onChange: function(event) {},
-      onKeyDown: function(event) {},
-      onKeyUp: function(event) {},
-      onFocus: function(event) {},
-      onBlur: function(event) {},
-      filterOption: null,
-      defaultClassNames: true,
-      customListComponent: TypeaheadSelector
-    };
-  },
+  static defaultProps = {
+    options: [],
+    customClasses: {},
+    allowCustomValues: 0,
+    defaultValue: "",
+    value: null,
+    placeholder: "",
+    textarea: false,
+    inputProps: {},
+    onOptionSelected: function(option) {},
+    onChange: function(event) {},
+    onKeyDown: function(event) {},
+    onKeyUp: function(event) {},
+    onFocus: function(event) {},
+    onBlur: function(event) {},
+    filterOption: null,
+    defaultClassNames: true,
+    customListComponent: TypeaheadSelector
+  };
 
-  getInitialState: function() {
-    return {
-      // The currently visible set of options
-      visible: this.getOptionsForValue(this.props.defaultValue, this.props.options),
-
-      // This should be called something else, "entryValue"
-      entryValue: this.props.value || this.props.defaultValue,
-
-      // A valid typeahead value
-      selection: this.props.value,
-
-      // Index of the selection
-      selectionIndex: null
-    };
-  },
-
-  getOptionsForValue: function(value, options) {
+  getOptionsForValue = (value, options) => {
     if (!SHOULD_SEARCH_VALUE(value)) { return []; }
     var filterOptions = this._generateFilterFunction();
     var result = filterOptions(value, options);
@@ -104,34 +86,34 @@ var Typeahead = React.createClass({
       result = result.slice(0, this.props.maxVisible);
     }
     return result;
-  },
+  };
 
-  setEntryText: function(value) {
+  setEntryText = (value) => {
     this.refs.entry.value = value;
     this._onTextEntryUpdated();
-  },
+  };
 
-  focus: function(){
+  focus = () => {
     this.refs.entry.focus()
-  },
+  };
 
-  _hasCustomValue: function() {
+  _hasCustomValue = () => {
     if (this.props.allowCustomValues > 0 &&
       this.state.entryValue.length >= this.props.allowCustomValues &&
       this.state.visible.indexOf(this.state.entryValue) < 0) {
       return true;
     }
     return false;
-  },
+  };
 
-  _getCustomValue: function() {
+  _getCustomValue = () => {
     if (this._hasCustomValue()) {
       return this.state.entryValue;
     }
     return null;
-  },
+  };
 
-  _renderIncrementalSearchResults: function() {
+  _renderIncrementalSearchResults = () => {
     // Nothing has been entered into the textbox
     if (!this.state.entryValue) {
       return "";
@@ -153,9 +135,9 @@ var Typeahead = React.createClass({
         defaultClassNames={this.props.defaultClassNames}
         displayOption={this._generateOptionToStringFor(this.props.displayOption)} />
     );
-  },
+  };
 
-  getSelection: function() {
+  getSelection = () => {
     var index = this.state.selectionIndex;
     if (this._hasCustomValue()) {
       if (index === 0) {
@@ -165,9 +147,9 @@ var Typeahead = React.createClass({
       }
     }
     return this.state.visible[index];
-  },
+  };
 
-  _onOptionSelected: function(option, event) {
+  _onOptionSelected = (option, event) => {
     var nEntry = this.refs.entry;
     nEntry.focus();
 
@@ -182,30 +164,30 @@ var Typeahead = React.createClass({
                    selection: formInputOptionString,
                    entryValue: optionString});
     return this.props.onOptionSelected(option, event);
-  },
+  };
 
-  _onTextEntryUpdated: function() {
+  _onTextEntryUpdated = () => {
     var value = this.refs.entry.value;
     this.setState({visible: this.getOptionsForValue(value, this.props.options),
                    selection: null,
                    entryValue: value});
-  },
+  };
 
-  _onEnter: function(event) {
+  _onEnter = (event) => {
     var selection = this.getSelection();
     if (!selection) {
       return this.props.onKeyDown(event);
     }
     return this._onOptionSelected(selection, event);
-  },
+  };
 
-  _onEscape: function() {
+  _onEscape = () => {
     this.setState({
       selectionIndex: null
     });
-  },
+  };
 
-  _onTab: function(event) {
+  _onTab = (event) => {
     var selection = this.getSelection();
     var option = selection ?
       selection : (this.state.visible.length > 0 ? this.state.visible[0] : null);
@@ -217,9 +199,9 @@ var Typeahead = React.createClass({
     if (option !== null) {
       return this._onOptionSelected(option, event);
     }
-  },
+  };
 
-  eventMap: function(event) {
+  eventMap = (event) => {
     var events = {};
 
     events[KeyEvent.DOM_VK_UP] = this.navUp;
@@ -229,9 +211,9 @@ var Typeahead = React.createClass({
     events[KeyEvent.DOM_VK_TAB] = this._onTab;
 
     return events;
-  },
+  };
 
-  _nav: function(delta) {
+  _nav = (delta) => {
     if (!this._hasHint()) {
       return;
     }
@@ -248,25 +230,25 @@ var Typeahead = React.createClass({
     }
 
     this.setState({selectionIndex: newIndex});
-  },
+  };
 
-  navDown: function() {
+  navDown = () => {
     this._nav(1);
-  },
+  };
 
-  navUp: function() {
+  navUp = () => {
     this._nav(-1);
-  },
+  };
 
-  _onChange: function(event) {
+  _onChange = (event) => {
     if (this.props.onChange) {
       this.props.onChange(event);
     }
 
     this._onTextEntryUpdated();
-  },
+  };
 
-  _onKeyDown: function(event) {
+  _onKeyDown = (event) => {
     // If there are no visible elements, don't perform selector navigation.
     // Just pass this up to the upstream onKeydown handler.
     // Also skip if the user is pressing the shift key, since none of our handlers are looking for shift
@@ -283,15 +265,15 @@ var Typeahead = React.createClass({
     }
     // Don't propagate the keystroke back to the DOM/browser
     event.preventDefault();
-  },
+  };
 
-  componentWillReceiveProps: function(nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.setState({
       visible: this.getOptionsForValue(this.state.entryValue, nextProps.options)
     });
-  },
+  }
 
-  render: function() {
+  render() {
     var inputClasses = {};
     inputClasses[this.props.customClasses.input] = !!this.props.customClasses.input;
     var inputClassList = classNames(inputClasses);
@@ -322,9 +304,9 @@ var Typeahead = React.createClass({
         { this._renderIncrementalSearchResults() }
       </div>
     );
-  },
+  }
 
-  _renderHiddenInput: function() {
+  _renderHiddenInput = () => {
     if (!this.props.name) {
       return null;
     }
@@ -336,9 +318,9 @@ var Typeahead = React.createClass({
         value={ this.state.selection }
       />
     );
-  },
+  };
 
-  _generateFilterFunction: function() {
+  _generateFilterFunction = () => {
     var filterOptionProp = this.props.filterOption;
     if (typeof filterOptionProp === 'function') {
       return function(value, options) {
@@ -357,9 +339,9 @@ var Typeahead = React.createClass({
           .map(function(res) { return options[res.index]; });
       };
     }
-  },
+  };
 
-  _generateOptionToStringFor: function(prop) {
+  _generateOptionToStringFor = (prop) => {
     if (typeof prop === 'string') {
       return _generateAccessor(prop);
     } else if (typeof prop === 'function') {
@@ -367,11 +349,25 @@ var Typeahead = React.createClass({
     } else {
       return IDENTITY_FN;
     }
-  },
+  };
 
-  _hasHint: function() {
+  _hasHint = () => {
     return this.state.visible.length > 0 || this._hasCustomValue();
-  }
-});
+  };
+
+  state = {
+    // The currently visible set of options
+    visible: this.getOptionsForValue(this.props.defaultValue, this.props.options),
+
+    // This should be called something else, "entryValue"
+    entryValue: this.props.value || this.props.defaultValue,
+
+    // A valid typeahead value
+    selection: this.props.value,
+
+    // Index of the selection
+    selectionIndex: null
+  };
+}
 
 module.exports = Typeahead;

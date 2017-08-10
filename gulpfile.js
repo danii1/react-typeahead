@@ -13,7 +13,7 @@ gulp.task('test', function() {
 gulp.task('build', function () {
     return gulp.src('./src/**')
         .pipe(babel({
-          presets: ['es2015', 'react']
+          presets: ['es2015', 'stage-2', 'react']
         }))
         .pipe(gulp.dest('./lib'));
 });

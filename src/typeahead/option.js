@@ -5,8 +5,8 @@ var classNames = require('classnames');
 /**
  * A single option within the TypeaheadSelector
  */
-var TypeaheadOption = React.createClass({
-  propTypes: {
+class TypeaheadOption extends React.Component {
+  static propTypes = {
     customClasses: PropTypes.object,
     customValue: PropTypes.string,
     onClick: PropTypes.func,
@@ -20,18 +20,16 @@ var TypeaheadOption = React.createClass({
       PropTypes.element,
       PropTypes.func
     ])
-  },
+  };
 
-  getDefaultProps: function() {
-    return {
-      customClasses: {},
-      onClick: function(event) {
-        event.preventDefault();
-      }
-    };
-  },
+  static defaultProps = {
+    customClasses: {},
+    onClick: function(event) {
+      event.preventDefault();
+    }
+  };
 
-  render: function() {
+  render() {
     var classes = {};
     classes[this.props.customClasses.hover || "hover"] = !!this.props.hover;
     classes[this.props.customClasses.listItem] = !!this.props.customClasses.listItem;
@@ -55,22 +53,22 @@ var TypeaheadOption = React.createClass({
 
       </li>
     );
-  },
+  }
 
-  _getClasses: function() {
+  _getClasses = () => {
     var classes = {
       "typeahead-option": true,
     };
     classes[this.props.customClasses.listAnchor] = !!this.props.customClasses.listAnchor;
 
     return classNames(classes);
-  },
+  };
 
-  _onClick: function(event) {
+  _onClick = (event) => {
     event.preventDefault();
     return this.props.onClick(event);
-  }
-});
+  };
+}
 
 
 module.exports = TypeaheadOption;

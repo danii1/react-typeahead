@@ -6,8 +6,8 @@ var classNames = require('classnames');
  * Encapsulates the rendering of an option that has been "selected" in a
  * TypeaheadTokenizer
  */
-var Token = React.createClass({
-  propTypes: {
+class Token extends React.Component {
+  static propTypes = {
     className: PropTypes.string,
     name: PropTypes.string,
     children: PropTypes.string,
@@ -16,9 +16,9 @@ var Token = React.createClass({
       PropTypes.object,
     ]),
     onRemove: PropTypes.func
-  },
+  };
 
-  render: function() {
+  render() {
     var className = classNames([
       "typeahead-token",
       this.props.className
@@ -31,9 +31,9 @@ var Token = React.createClass({
         {this._renderCloseButton()}
       </div>
     );
-  },
+  }
 
-  _renderHiddenInput: function() {
+  _renderHiddenInput = () => {
     // If no name was set, don't create a hidden input
     if (!this.props.name) {
       return null;
@@ -46,9 +46,9 @@ var Token = React.createClass({
         value={ this.props.object }
       />
     );
-  },
+  };
 
-  _renderCloseButton: function() {
+  _renderCloseButton = () => {
     if (!this.props.onRemove) {
       return "";
     }
@@ -58,7 +58,7 @@ var Token = React.createClass({
           event.preventDefault();
         }.bind(this)}>&#x00d7;</a>
     );
-  }
-});
+  };
+}
 
 module.exports = Token;
